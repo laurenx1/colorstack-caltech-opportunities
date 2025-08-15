@@ -1,0 +1,73 @@
+name: Add Opportunity
+description: Submit a new opportunity (internship, hackathon, fellowship, competition, fund, etc.)
+title: "[Opportunity] Program Name - Organization"
+labels: ["opportunity submission"]
+body:
+  - type: input
+    id: name
+    attributes:
+      label: Opportunity Name
+      description: Name of the opportunity, program, or event.
+      placeholder: ex. Headstarter AI Fellowship
+    validations:
+      required: true
+
+  - type: input
+    id: org
+    attributes:
+      label: Organization / Sponsor
+      description: The company, university, or group hosting this opportunity.
+      placeholder: ex. Google, Dorm Room Fund
+    validations:
+      required: true
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Opportunity Type
+      description: Select the best category.
+      options:
+        - Internship
+        - Hackathon
+        - Fellowship
+        - Accelerator / Fund
+        - Competition
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: location
+    attributes:
+      label: Location
+      description: City, country, or "Remote".
+      placeholder: ex. Remote, San Francisco, Global
+    validations:
+      required: true
+
+  - type: input
+    id: deadline
+    attributes:
+      label: Application Deadline
+      description: Date or "Rolling".
+      placeholder: ex. March 15, 2025 or Rolling
+    validations:
+      required: true
+
+  - type: input
+    id: link
+    attributes:
+      label: Application / Info Link
+      description: URL to apply or learn more.
+      placeholder: https://example.com/apply
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes / Highlights
+      description: Any key info applicants should know (eligibility, duration, perks, etc.).
+      placeholder: ex. Open to undergrads worldwide. Paid travel for finalists.
+    validations:
+      required: false
