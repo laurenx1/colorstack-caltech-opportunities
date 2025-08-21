@@ -1,0 +1,37 @@
+name: Update README from Issues
+
+on:
+  issues:
+    types: [opened, edited, closed]
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write   # allow committing changes
+      issues: read
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install pandas pyyaml
+
+      - name: Parse issues and update README
+        run: |
+          python parse_issues.py
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add opportunities.csv README.md
+          git commit -m "chore: update opportunities from issue #${{ github.event.issue.number }}" || echo "No changes to commit"
+          git push
